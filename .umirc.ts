@@ -8,7 +8,7 @@ export default defineConfig({
     type: 'hash',
   },
   publicPath: './',
-  outputPath: 'renderer',
+  outputPath: 'dist/renderer',
   webpack5: {},
   routes: [{ path: '/', component: '@/pages/index' }],
   fastRefresh: {},
