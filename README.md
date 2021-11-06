@@ -22,3 +22,27 @@
 #### 注意
 1、`.umirc` 配置 `outputPath:renderer,publicPath:"./",history:{type:hash}` 
 2、前端路由必须使用hash模式
+
+
+#### 更改程序桌面图标
+在package.json的 config.forge.packagerConfig 中添加 icon 属性，路径最后图标不要写后缀。因为打包程序会自己根据环境来选择文件后缀。比如打 mac 程序的包就会使用 .icns 图标；打 windows 程序，就会选.ico图标。
+
+#### icns 图标生成方法
+*  准备最大尺寸 1024x1024 图片一张，重命名为icon.png
+*  通过鼠标右键或者命令，创建一个名为icons.iconset的文件夹
+*  通过”终端“来快速创建各种不同尺寸要求的图片文件
+```
+sips -z 16 16 icon.png -o icons.iconset/icon_16x16.png
+sips -z 32 32 icon.png -o icons.iconset/icon_16x16@2x.png
+sips -z 32 32 icon.png -o icons.iconset/icon_32x32.png
+sips -z 64 64 icon.png -o icons.iconset/icon_32x32@2x.png
+sips -z 128 128 icon.png -o icons.iconset/icon_128x128.png
+sips -z 256 256 icon.png -o icons.iconset/icon_128x128@2x.png
+sips -z 256 256 icon.png -o icons.iconset/icon_256x256.png
+sips -z 512 512 icon.png -o icons.iconset/icon_256x256@2x.png
+sips -z 512 512 icon.png -o icons.iconset/icon_512x512.png
+sips -z 1024 1024 icon.png -o icons.iconset/icon_512x512@2x.png
+```
+* ”终端“中运行下面的命令，就可以获得名为icon.icns的图标文件了
+`iconutil -c icns icons.iconset -o icon.icns`
+注意：icon.png图片文件和icons.iconset文件夹要保存在同一级目录下，”终端“启动后切换到相同目录。另外，icons.iconset 目录名称 可以是 xxxx.iconset，但是目录中生成的图片必须是上文中的名称，不能变更。生成的 icon.icns 图标也可以进行重命名

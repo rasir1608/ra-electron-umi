@@ -1,6 +1,6 @@
 {
   "name": "ra-electron-umi",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "rasir electron15.x + umi4.x + ts",
   "main": "./dist/main/index.js",
   "scripts": {
@@ -61,13 +61,15 @@
   "config": {
     "forge": {
       "packagerConfig": {
-        "asar":true
+        "asar":true,
+        "name":"ra-electron-umi",
+        "icon":"./public/favicon"
       },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "electron_umi"
+            "name": "electron-umi"
           }
         },
         {
@@ -88,3 +90,5 @@
     }
   }
 }
+
+

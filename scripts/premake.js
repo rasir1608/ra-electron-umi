@@ -1,5 +1,6 @@
 fs = require('fs');
 path = require('path');
+const { copyDir, clearDir } = require('./tools');
 const destPath = path.join(__dirname, '..', 'dist', 'package.json');
 const npmrcPath = path.join(__dirname, '..', 'dist', '.npmrc');
 const srcPath = path.join(__dirname, '..', 'package.json');
@@ -40,11 +41,11 @@ registry=https://registry.npm.taobao.org
 
 fs.writeFileSync(npmrcPath, npmrc);
 
-// 删除目录
-function clearDir(dirPath) {
-  if (!fs.existsSync(dirPath)) return;
-  fs.rmSync(dirPath, { recursive: true, force: true });
-}
+copyDir(
+  path.join(__dirname, '..', 'public'),
+  path.join(__dirname, '..', 'dist', 'public'),
+);
+
 // 首先删除目标 out 目录下的所有文件
 const destDir = path.join(__dirname, '..', 'out');
 clearDir(destDir);
