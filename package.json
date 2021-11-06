@@ -1,0 +1,85 @@
+{
+  "name": "ra-electron-umi",
+  "version": "1.0.0",
+  "description": "rasir electron15.x + umi4.x + ts",
+  "main": "./dist/main/index.js",
+  "scripts": {
+    "start:renderer": "umi dev",
+    "start:electron": "electron-forge start",
+    "start:nodemon": "nodemon  --exec \"npm run start:electron\" --watch ./dist/main",
+    "build:renderer": "umi build",
+    "build:main": "cd main && npx tsc --watch false",
+    "start:tsc": "cd main && npx tsc",
+    "start": "concurrently \"npm run start:renderer\" \"npm run start:tsc\"  \"npm run start:nodemon\"",
+    "build": "concurrently  \"npm run build:renderer\"  \"npm run build:main\" && npm run make",
+    "postinstall": "umi generate tmp",
+    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
+    "test": "umi-test",
+    "test:coverage": "umi-test --coverage",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "dependencies": {
+    "@ant-design/pro-layout": "^6.5.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "react": "17.x",
+    "react-dom": "17.x",
+    "umi": "^3.5.20"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.61",
+    "@electron-forge/maker-deb": "^6.0.0-beta.61",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.61",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.61",
+    "@electron-forge/maker-zip": "^6.0.0-beta.61",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@umijs/preset-react": "1.x",
+    "@umijs/test": "^3.5.20",
+    "concurrently": "^6.3.0",
+    "electron": "^15.3.0",
+    "lint-staged": "^10.0.7",
+    "nodemon": "^2.0.14",
+    "prettier": "^2.2.0",
+    "typescript": "^4.4.4",
+    "yorkie": "^2.0.0"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "electron_umi"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "watch": true,
+    "sourceMap": false,
+    "outDir": "../dist/main",
+    "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "noImplicitThis": false
+  },
+  "exclude": [
+    "node_modules",
+    "lib",
+    "es",
+    "dist",
+    "typings",
+    "**/__test__",
+    "test",
+    "docs",
+    "tests"
+  ]
+}
