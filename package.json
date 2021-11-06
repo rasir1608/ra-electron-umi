@@ -61,6 +61,7 @@
   "config": {
     "forge": {
       "packagerConfig": {
+        "asar":true
       },
       "makers": [
         {
